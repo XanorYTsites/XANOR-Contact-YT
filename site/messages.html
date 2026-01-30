@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Messages reçus</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #f4f6f8;
+  padding: 20px;
+}
+
+.message {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+
+<body>
+
+<h1>📥 Messages reçus</h1>
+
+<div id="liste"></div>
+
+<script>
+let messages = JSON.parse(localStorage.getItem("messages")) || [];
+let liste = document.getElementById("liste");
+
+messages.forEach(m => {
+  let div = document.createElement("div");
+  div.className = "message";
+  div.innerHTML = `
+    <strong>${m.nom}</strong> (${m.email})<br>
+    <em>${m.date}</em>
+    <p>${m.message}</p>
+  `;
+  liste.appendChild(div);
+});
+</script>
+
+</body>
+</html>
